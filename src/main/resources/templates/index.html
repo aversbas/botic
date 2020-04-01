@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <link rel="stylesheet" href="css/style.css" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/popuplogin.js}"></script>
+    <link rel="stylesheet" href="css/main.css" >
+    <title>ortobotik</title>
+</head>
+<body>
+<div class="ui container">
+    <div th:replace="header :: header"></div>
+    <nav>
+        <div class="ui container">
+            <div class="ui divider"></div>
+            <div class="menu-main ui secondary menu large center aligned grid">
+                <a class="item active" href="/products">Ортопедичне взуття</a>
+                <a class="item active">Анатомічне взуття</a>
+                <a class="item active">Компресійний трикотаж</a>
+                <a class="item active">Устілки та вставки</a>
+                <a class="item active" href="/profile">Розпродаж</a>
+            </div>
+            <div class="ui divider"></div>
+        </div>
+    </nav>
+    <main>
+        <div class="promo-section">
+
+        </div>
+        <div class="ui divider"></div>
+        <div class="content-main">
+            <div class="ui grid">
+                <div class="eight wide column">
+                    <div class="ui raised very padded text segment center aligned">
+                        <h2 class="ui header" >Жіноче взуття</h2>
+                    </div>
+                </div>
+                <div class="eight wide column">
+                    <div class="ui raised very padded text segment center aligned">
+                        <h2 class="ui header">Дитяче взуття</h2>
+                    </div>
+                </div>
+                <div class="eight wide column">
+                    <div class="ui raised very padded text segment center aligned">
+                        <h2 class="ui header">Чоловіче взуття</h2>
+                    </div>
+                </div>
+                <div class="eight wide column">
+                    <div class="ui raised very padded text segment center aligned">
+                        <h2 class="ui header">Ортопедичні товари</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui divider"></div>
+    </main>
+</div>
+<div th:replace="footer :: footer"></div>
+</body>
+</html>
