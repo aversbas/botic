@@ -3,6 +3,7 @@ package com.orto.botic.cotroller;
 import com.orto.botic.entities.User;
 import com.orto.botic.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -56,26 +57,36 @@ public class RegistrationController {
         return modelAndView;
     }
 
-//    @GetMapping(value="/admin/home")
-//    public ModelAndView home(){
-//        ModelAndView modelAndView = new ModelAndView();
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        User user = userService.findUserByUserName(auth.getName());
-//        modelAndView.addObject("userName", "Welcome " + user.getUserName() + "/" + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
-//        modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
-//        modelAndView.setViewName("admin/home");
-//        return modelAndView;
-//    }
-
-    @GetMapping(value="/index")
-    public ModelAndView index(){
+    @GetMapping(value="/admin")
+    public ModelAndView home(){
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByUserName(auth.getName());
         modelAndView.addObject("userName", "Welcome " + user.getUserName() + "/" + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
         modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
-        modelAndView.setViewName("index");
+        modelAndView.setViewName("admin");
         return modelAndView;
+    }
+
+//    @GetMapping(value="/index")
+//    public ModelAndView index(){
+//        ModelAndView modelAndView = new ModelAndView();
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        User user = userService.findUserByUserName(auth.getName());
+//        modelAndView.addObject("userName", "Welcome " + user.getUserName() + "/" + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
+//        modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
+//        modelAndView.setViewName("index");
+//        return modelAndView;
+//    }
+
+    @GetMapping(value="/header")
+    public ModelAndView header(){
+            ModelAndView mAndView = new ModelAndView();
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            User user = userService.findUserByUserName(auth.getName());
+            mAndView.addObject("user", "Welcome " + user.getName());
+            mAndView.setViewName("header");
+            return mAndView;
     }
 
 }

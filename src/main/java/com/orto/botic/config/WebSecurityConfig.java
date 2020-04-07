@@ -14,10 +14,22 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
+import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    private DataSource dataSource;
+
+    @Autowired
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
+    private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -25,7 +37,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private MyUserDetailService userDetailsService;
 
-
+    @Autowired
+    public WebSecurityConfig(CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler) {
+        this.customAuthenticationSuccessHandler = customAuthenticationSuccessHandler;
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -39,32 +54,76 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         String loginPage = "/login";
         String logoutPage = "/logout";
 
-        http.
-                authorizeRequests()
-                .antMatchers("/**").permitAll()
-                .antMatchers(loginPage).permitAll()
-                .antMatchers("/registration").permitAll()
-                .antMatchers("/admin/**").hasAuthority("ADMIN")
-                .antMatchers("/index/**").hasAnyRole("USER")
-                .anyRequest()
-                .authenticated()
-                .and().csrf().disable()
+//        http.
+//                authorizeRequests()
+//                .antMatchers("/**").permitAll()
+//                .antMatchers(loginPage).permitAll()
+//                .antMatchers("/index/**", "/resources/**").permitAll()
+//                .antMatchers("/admin").hasRole("ADMIN")
+//                .anyRequest()
+//                .authenticated()
+//                .and().csrf().disable()
+//                .formLogin()
+//                .loginPage(loginPage)
+////                .successHandler(customAuthenticationSuccessHandler)
+//                .failureUrl("/login?error=true")
+//                .defaultSuccessUrl("/index")
+//                .usernameParameter("user_name")
+//                .passwordParameter("password")
+//                .permitAll()
+//                .and()
+//                .logout()
+//                .permitAll();
+
+//        .authorizeRequests()
+//                .antMatchers( "/**").permitAll()
+//                .antMatchers("/admin").hasAuthority("ROLE_ADMIN")
+//                .anyRequest().authenticated()
+//                .and()
+//                .formLogin()
+//                .loginPage("/login")
+//                .successHandler(customAuthenticationSuccessHandler)
+//                .failureUrl("/login?error=true")
+////                .defaultSuccessUrl("/")
+//                .usernameParameter("user_name")
+//                .passwordParameter("password")
+//                .permitAll()
+//                .and()
+//                .logout()
+//                .permitAll()
+//                .and().csrf().disable();
+
+
+//        http.authorizeRequests()
+//                .antMatchers("/").permitAll()
+//                .antMatchers("/admin/**").hasRole("ADMIN")
+//                .antMatchers("/**").hasAnyRole("ADMIN", "USER")
+//                .and().formLogin()
+//                .loginPage(loginPage)
+//                .defaultSuccessUrl("/")
+//                .and().logout().logoutSuccessUrl("/").permitAll()
+//                .and().csrf().disable();
+
+        http
+                .authorizeRequests()
+                .antMatchers("/admin/**").access("hasRole('ADMIN')")
+                .and()
                 .formLogin()
-                .loginPage(loginPage)
-                .failureUrl("/login?error=true")
-                .defaultSuccessUrl("/index")
+                .loginPage("/login")
                 .usernameParameter("user_name")
                 .passwordParameter("password")
-                .permitAll()
+                .defaultSuccessUrl("/")
+                .failureUrl("/login?error")
                 .and()
-                .logout()
-                .permitAll();
+                .csrf()
+                .disable();
     }
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web
-                .ignoring()
-                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
+
+        @Override
+        public void configure (WebSecurity web) throws Exception {
+            web
+                    .ignoring()
+                    .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
+        }
     }
-}

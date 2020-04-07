@@ -7,11 +7,14 @@ import com.orto.botic.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Set;
 
 @Service
+@Transactional
 public class UserService {
 
     private UserRepository userRepository;
@@ -38,8 +41,9 @@ public class UserService {
     public User saveUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setActive(true);
-        Role userRole = roleRepository.findByRole("ADMIN");
-        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+        Set<Role> roles = new HashSet<>();
+        roles.add(roleRepository.getOne(2));
+        user.setRoles(roles);
         return userRepository.save(user);
     }
 }

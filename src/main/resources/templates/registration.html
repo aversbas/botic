@@ -3,17 +3,17 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Registration Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <link rel="stylesheet" href="css/style.css" >
     <link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<form th:action="@{/login}" method="get">
-    <button class="btn center-block btn-md btn-warning btn-block" type="Submit">Go To Login Page</button>
-</form>
 
 <div class="container">
+    <div th:replace="header :: header"></div>
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <form autocomplete="off" action="#" th:action="@{/registration}"
@@ -69,11 +69,13 @@
                 </div>
 
                 <h2><span class="text-success" th:utext="${successMessage}"></span></h2>
-
+            </form>
+            <form th:action="@{/login}" method="get" >
+                <button class="btn center-block btn-primary btn-warning btn-block" type="Submit">Go To Login Page</button>
             </form>
         </div>
     </div>
 </div>
-
+<div th:replace="footer :: footer"></div>
 </body>
 </html>

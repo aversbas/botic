@@ -1,11 +1,9 @@
 package com.orto.botic.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @Builder
@@ -18,6 +16,10 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "role_id")
     private int id;
+
     @Column(name = "role")
     private String role;
+
+    @ManyToMany(mappedBy = "roles")
+    private Set<User> users;
 }

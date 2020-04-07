@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
     <meta charset="UTF-8">
     <title>header</title>
 </head>
@@ -10,7 +13,22 @@
         <div class="menu-header-left column left aligned middle aligned content">
             <div class="menu-burger ui ">
                 <div class="ui dropdown icon item">
-                    <i class="bars icon"></i>
+
+
+
+<!--                    <i class="bars icon"></i>-->
+
+
+                    <div class="dropdown">
+                        <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">
+                            <i class="bars icon"></i></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="/admin"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-wrench"></span> Settings</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                        </ul>
+                    </div>
+
                     <div class="menu">
                         <div class="item">
                             <i class="dropdown icon"></i>
@@ -25,19 +43,29 @@
             </div>
             <div class="switcher-language">Укр</div>
         </div>
+            <a href="/index">
         <div class="logo column center aligned">
-            <img src="/images/logo.jpg" alt="logo" width="165px">
+             <img src="/images/logo.jpg" alt="logo" width="165px">
         </div>
+            <a/>
         <div class="menu-header-right column right aligned">
             <ul class="menu-list">
                 <button class="ui icon button">
                     <li><a href="/login"><i class="sign in alternate icon"></i></a></li>
+
+
+<!--                    <ul>-->
+<!--                        <li sec:authorize="isAnonymous()"><a href="/login"><i class="sign in alternate icon"></i></a></li>-->
+<!--&lt;!&ndash;                        <li sec:authorize="isAuthenticated()"><a class="nav-link" href="/logout">Logout</a></li>&ndash;&gt;-->
+<!--                        <li sec:authorize="isAuthenticated()"><span th:utext="${user}"></span></li>-->
+<!--                    </ul>-->
+
                 </button>
                 <button class="ui icon button">
                     <li><i class="heart outline icon"></i></li>
                 </button>
                 <button class="ui icon button">
-                    <li><a href="#"><i class="shopping bag icon"></i></a></li>
+                    <li><a href="/shop/cart"><i class="shopping bag icon"></i></a></li>
                 </button>
                 <button class="ui icon button">
                     <li><a href="#"><i class="search icon"></i></a></li>
