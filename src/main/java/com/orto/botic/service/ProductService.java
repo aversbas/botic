@@ -23,7 +23,13 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public void save(Product product) {
+    public void saveProd(Product product) {
+        product.setId(product.getId());
+        product.setTitle(product.getTitle());
+        product.setDescription(product.getDescription());
+        product.setPrice(product.getPrice());
+        product.setPhotoName(product.getPhotoName());
+        product.setCategory(product.getCategory());
         productRepository.save(product);
     }
 

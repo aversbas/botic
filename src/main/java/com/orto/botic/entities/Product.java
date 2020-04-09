@@ -2,6 +2,8 @@ package com.orto.botic.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -28,8 +30,8 @@ public class Product {
   @Column(name = "photo_name")
   private String photoName;
 
+  @ToString.Exclude
   @ManyToOne
   private Category category;
-
 
 }

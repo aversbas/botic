@@ -57,16 +57,6 @@ public class RegistrationController {
         return modelAndView;
     }
 
-    @GetMapping(value="/admin")
-    public ModelAndView home(){
-        ModelAndView modelAndView = new ModelAndView();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByUserName(auth.getName());
-        modelAndView.addObject("userName", "Welcome " + user.getUserName() + "/" + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
-        modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
-        modelAndView.setViewName("admin");
-        return modelAndView;
-    }
 
 //    @GetMapping(value="/index")
 //    public ModelAndView index(){
@@ -84,7 +74,7 @@ public class RegistrationController {
             ModelAndView mAndView = new ModelAndView();
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             User user = userService.findUserByUserName(auth.getName());
-            mAndView.addObject("user", "Welcome " + user.getName());
+            mAndView.addObject("user", user.getUserName() + "/" + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
             mAndView.setViewName("header");
             return mAndView;
     }

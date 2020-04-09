@@ -15,5 +15,30 @@ body {
 }
 footer {
     background: #E5E5E5;
-    height: 220px;
+    height: 190px;
 }
+
+.footer-text {
+    font-family: Roboto Condensed, serif;
+    font-size: 14px;
+    line-height: 16px;
+    color: #333333;
+    opacity: 0.5;
+}
+
+.footer-position{
+    top: 23px;
+}
+
+.four-section{
+    width: 540px;
+    height: 160px;
+
+    background: url(images/womanshoes.jpg);
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 20px;
+}
+
+
+
+

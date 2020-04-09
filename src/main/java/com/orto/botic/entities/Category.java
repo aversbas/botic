@@ -3,6 +3,7 @@ package com.orto.botic.entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
@@ -21,7 +22,8 @@ public class Category {
     @Column(name = "title")
     private String title;
 
-    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "category", cascade = CascadeType.DETACH)
     private List<Product> products;
+
 }
 
