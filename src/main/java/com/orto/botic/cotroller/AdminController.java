@@ -65,7 +65,6 @@ public class AdminController {
     @PostMapping(value = "/save")
     public ModelAndView saveProduct(Product product) {
             var modelAndView = new ModelAndView();
-//            var product = new Product();
             productService.saveProd(product);
         modelAndView.addObject("successMessage", "Продукт збережено");
         modelAndView.addObject("product",product);
@@ -73,16 +72,23 @@ public class AdminController {
         return modelAndView;
     }
 
-//    @PostMapping(value = "/save")
-//    public ModelAndView saveProduct(Product product) {
-//        ModelAndView modelAndView = new ModelAndView();
-//
-//            productService.saveProd(product);
-//            modelAndView.addObject("successMessage", "Продукт збережено");
-//            modelAndView.addObject("prod", new Product());
-//
-//        return new ModelAndView("redirect:/admin");
-//    }
+    @GetMapping(value = "/edit/{id}")
+    public ModelAndView showEditProductPage(Product product,@PathVariable(name = "id") long id) {
+        var modelAndView = new ModelAndView();
+        productService.findById(id);
+        modelAndView.addObject("product",product);
+        modelAndView.setViewName("admin/edit_product");
+        return modelAndView;
+    }
 
+
+    @GetMapping("/delete/{id}")
+    public ModelAndView deleteProduct(@PathVariable(name = "id") int id) {
+        var mav = new ModelAndView();
+        productService.delete(id);
+        mav.addObject("deleteMessage","Продукт успішно видалено");
+        mav.setViewName("admin/product-list");
+        return mav;
+    }
 
 }

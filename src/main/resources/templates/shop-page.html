@@ -74,26 +74,69 @@
 <!--            </div>-->
 <!--         </div>-->
 
+
+
     <div class="ui four column grid">
         <tr th:each="product : ${products}">
         <div class="column">
             <div class="ui segment">
-                <img th:src="@{'/images/' + ${product.photoName}}" style="width:240px; height:240px;"></td>
-                <td th:text="${product.title}"></td>
-                <td th:text="${product.price}"></td>
+              <div> <img th:src="@{'/images/' + ${product.photoName}}" style="width:240px; height:240px;"></td></div>
+                <div th:text="${product.title}"></div>
+                <div th:text="${product.price}"></div>
+                <div>
+                    <a th:href="@{'/shop/cart/add/' + ${product.id}}" class="btn btn-primary">Добавить в корзину</a>
+                </div>
+                <div>
+                    <a th:href="@{'/comment/' + ${product.id}}" class="btn btn-primary">Оставить комментарий</a>
+                </div>
             </div>
         </div>
     </div>
 
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <!--<li class="page-item"><a class="page-link" href="#">Previous</a></li>-->
-            <li th:each="i : ${#numbers.sequence(1, totalPage, 1)}">
-                <a th:class="page-link" th:text="${i}" th:classappend="${page == i ? 'active' : ''}" th:href="@{'/shop/?page=' + ${i} + ${filters}}"></a>
+<!--    <nav aria-label="Page navigation example">-->
+<!--        <ul class="pagination">-->
+<!--            <li class="page-item"><a class="page-link" href="#">Previous</a></li>-->
+<!--            <li th:each="i : ${#numbers.sequence(1, totalPage, 1)}">-->
+<!--                <a th:class="page-link" th:text="${i}" th:classappend="${page == i ? 'active' : ''}" th:href="@{'/products/?page=' + ${i} + ${filters}}"></a>-->
+<!--            </li>-->
+<!--            <li class="page-item"><a class="page-link" href="#">Next</a></li>-->
+<!--        </ul>-->
+<!--    </nav>-->
+
+
+
+    <nav aria-label="Pagination" th:if="${products.totalPages gt 0}">
+        <ul class="pagination justify-content-center font-weight-medium">
+            <li class="page-item" th:classappend="${products.number eq 0} ? 'disabled'">
+                <a class="page-link svg-icon"
+                   th:href="@{/products?page={id}(id=${products.number lt 2 ? 1 : products.number})}"
+                   aria-label="Previous"
+                   title="Previous Page" rel="tooltip">
+                    <span aria-hidden="true" data-feather="chevrons-left" width="20" height="20">Previous</span>
+                </a>
             </li>
-            <!--<li class="page-item"><a class="page-link" href="#">Next</a></li>-->
+            <li class="page-item" th:classappend="${i eq products.number + 1} ? 'active'"
+                th:each="i : ${#numbers.sequence( products.number + 1, products.totalPages > 12 + products.number ? products.number + 12 : products.totalPages, 1)}">
+                <a class="page-link" th:href="@{/products?page={id}(id=${i})}" th:text="${i}"
+                   th:title="${'Page '+ i}"
+                   rel="tooltip"></a>
+            </li>
+            <li class="page-item disabled" th:if="${products.number + 12 < products.totalPages}">
+                <a class="page-link svg-icon" href="#">
+                    <span data-feather="more-horizontal" width="20" height="20"></span>
+                </a>
+            </li>
+            <li class="page-item" th:classappend="${products.number + 1 eq products.totalPages} ? 'disabled'">
+                <a class="page-link svg-icon" th:href="@{/products?page={id}(id=${products.number + 2})}"
+                   aria-label="Next"
+                   title="Next Page" rel="tooltip">
+                    <span aria-hidden="true" data-feather="chevrons-right" width="20" height="20">Next</span>
+                </a>
+            </li>
         </ul>
     </nav>
+
+
 </div>
 
 </body>

@@ -28,13 +28,11 @@
         <div align="center" th:if="${param.error}">
             <p style="font-size: 20; color: #FF1C19;">User Name or Password invalid, please verify</p>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit"
+        <button class="massive ui blue button " style="width: 340px" name="Submit" value="Login" type="Submit"
                 th:text="Login"></button>
-    </form>
-    <form th:action="@{/registration}" method="get">
-        <button class="btn btn-md btn-warning btn-block btn-center " >Go To Registration Page</button>
+        <p></p>
+        <button class="massive ui orange button" style="width: 340px" ><a href="/registration">Go To Registration Page</a></button>
     </form>
 </div>
-<div th:replace="footer :: footer"></div>
 </body>
 </html>

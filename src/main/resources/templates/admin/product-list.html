@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
     <meta charset="utf-8"/>
     <title>Product Manager</title>
 </head>
@@ -11,7 +12,7 @@
     <a href="/admin/new">Create New Product</a>
 <!--    <a th:href="@{/new}" >Create New Product</a>-->
     <br/><br/>
-    <table border="1" cellpadding="10">
+    <table class="ui celled table">
         <thead>
         <tr>
             <th>Product ID</th>
@@ -25,18 +26,19 @@
         </thead>
         <tbody>
         <tr th:each="product : ${products}">
-            <td th:text="${product.id}">Product ID</td>
+            <td th:text="${product.id}" data-label="Product ID"></td>
             <td th:text="${product.title}">Title</td>
             <td th:text="${product.category.getTitle()}">Category</td>
             <td th:text="${product.description}">Description</td>
             <td th:text="${product.photoName}">Photo</td>
             <td th:text="${product.price}">Price</td>
             <td>
-                <a th:href="@{'/edit/' + ${product.id}}" >Edit</a>
-                <a th:href="@{'/delete/' + ${product.id}}" >Delete</a>
+                <button class="ui grey button"><a th:href="@{'/admin/edit/' + ${product.id}}" >Edit</a></button>
+                <button class="ui red button"><a th:href="@{'/admin/delete/' + ${product.id}}" >Delete</a></button>
             </td>
         </tr>
         </tbody>
+        <p class="admin-message-text text-center" th:utext="${deleteMessage}"></p>
     </table>
 </div>
 </body>

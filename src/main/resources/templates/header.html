@@ -16,7 +16,7 @@
 
 
 
-                    <!--                    <i class="bars icon"></i>-->
+<!--                                        <i class="bars icon"></i>-->
 
 
                     <div class="dropdown">
@@ -51,13 +51,9 @@
             <div class="menu-header-right column right aligned">
                 <ul class="menu-list">
                     <button class="ui icon button">
-                        <li><a href="/login"><i class="sign in alternate icon"></i></a></li>
-                        <!--                    <span sec:authorize="isAuthenticated()" th:utext="${user}"></span><a href="/login"><i class="sign in alternate icon"></i></a>-->
-                        <!--                    <ul>-->
-                        <!--                        <li sec:authorize="isAnonymous()"><a href="/login"><i class="sign in alternate icon"></i></a></li>-->
-                        <!--&lt;!&ndash;                        <li sec:authorize="isAuthenticated()"><a class="nav-link" href="/logout">Logout</a></li>&ndash;&gt;-->
-                        <!--                        <li sec:authorize="isAuthenticated()"><span th:utext="${user}"></span></li>-->
-                        <!--                    </ul>-->
+                        <li sec:authorize="isAuthenticated()"><a href="/login"><i class="sign in alternate icon"></i></a></li>
+<!--                                            <span sec:authorize="isAuthenticated()" th:utext="${user}"><a href="/login"><i class="sign in alternate icon"></i></a></span>-->
+
 
                     </button>
                     <button class="ui icon button">

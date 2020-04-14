@@ -46,4 +46,7 @@ public class UserService {
         user.setRoles(roles);
         return userRepository.save(user);
     }
+    public User findUserById (Integer id) {
+        return userRepository.findUserById(id);
+    }
 }

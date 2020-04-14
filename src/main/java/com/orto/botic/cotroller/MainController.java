@@ -10,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class MainController {
@@ -33,27 +35,32 @@ public class MainController {
         return "create-comment-page";
     }
 
-    @PostMapping("/createcomment")
-    public String saveComment(Model model, Principal principal, @ModelAttribute("comment") Comment comment) {
-        User user = userService.findUserByUserName(principal.getName());
-        comment.setUser(user);
+    @PostMapping("/comment/{productId}")
+    public ModelAndView saveComment(Comment comment,Principal principal,@PathVariable("productId") Long productId) {
+        var modelAndView = new ModelAndView();
+        comment.setProduct(productService.findById(productId));
+        comment.setUser(userService.findUserByUserName(principal.getName()));
         commentService.saveComment(comment);
-        return "redirect:/products";
+        modelAndView.addObject("successMessage", "Коментар збережено");
+        modelAndView.addObject("comment",comment);
+        modelAndView.setViewName("create-comment-page");
+        return modelAndView;
     }
+
 
     @GetMapping("/international")
     public String getInternationalPage() {
         return "international";
     }
 
-//    @GetMapping("/admin")
-//    public String getAdminPage() {
-//        return "admin";
-//    }
-
 
     @GetMapping("/index")
     public String getIndexPage() {
         return "index";
+    }
+
+    @GetMapping("/woman")
+    public String getWomanPage() {
+        return "woman";
     }
 }
