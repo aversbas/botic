@@ -30,8 +30,29 @@ public class Product {
   @Column(name = "photo_name")
   private String photoName;
 
+  @Column(name = "brand")
+  private String brand;
+
+  @Column(name = "color")
+  private String color;
+
+  @Column(name = "size")
+  private int size;
+
+  @Column(name = "season")
+  private String season;
+
+  @Column(name = "quantity")
+  private int quantity;
+
+  @Column(name = "appointment")
+  private String appointment;
+
   @ToString.Exclude
   @ManyToOne
   private Category category;
 
+  @ToString.Exclude
+  @ManyToOne
+  private ProductType type;
 }

@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,12 +25,6 @@ public class ProductService {
     }
 
     public void saveProd(Product product) {
-        product.setId(product.getId());
-        product.setTitle(product.getTitle());
-        product.setDescription(product.getDescription());
-        product.setPrice(product.getPrice());
-        product.setPhotoName(product.getPhotoName());
-        product.setCategory(product.getCategory());
         productRepository.save(product);
     }
 
@@ -51,5 +46,13 @@ public class ProductService {
 
     public Page<Product> getProductsWithPagingAndFiltering(int pageNumber, int pageSize, Specification<Product> productSpecification) {
         return productRepository.findAll(productSpecification, PageRequest.of(pageNumber, pageSize));
+    }
+
+    public Page<Product> getProductsWithPaging(int pageNumber, int pageSize) {
+        return productRepository.findAll( PageRequest.of(pageNumber, pageSize));
+    }
+
+    public Product findByColor(String color) {
+        return productRepository.findProductByColor(color);
     }
 }

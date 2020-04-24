@@ -12,7 +12,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
-    <link rel="stylesheet" href="css/style.css" >
+    <link rel="stylesheet" href="css/style.css">
     <script src="js/accordion.js"></script>
     <script src="js/dropdown.js"></script>
 <!--    <meta name="ctx" th:content="${#httpServletRequest.getContextPath()}"/>-->
@@ -81,121 +81,137 @@
                                             <div class="ui input"><input th:value="${word != null} ? ${word}" th:name="word" type="text" placeholder="Название"></div>
                                             <div class="ui input"><input th:value="${min != null} ? ${min}" th:name="min" type="number" placeholder="Минимальная цена"></div>
                                             <div class="ui input"><input th:value="${max != null} ? ${max}" th:name="max" type="number" placeholder="Максимальная цена"></div>
+<!--                                            <div class="ui input"><input th:value="${color != null} ? ${color}" th:name="color" type="text" placeholder="Цвет"></div>-->
+<!--                                            <div class="ui input"><input th:value="${category != null} ? ${category}" th:name="category" type="text" placeholder="категорія"></div>-->
                                             <div><button type="submit"  class="tiny ui button">Фильтровать</button></div>
+                                        </form>
 
+                            <form th:action="@{/products/productsoffilter}"  method="post">
 
-                                            <div class="ui vertical accordion menu">
-                                                <div class="item">
-                                                    <a class="active title">
-                                                        <i class="dropdown icon"></i>
-                                                        Size
-                                                    </a>
-                                                    <div class="active content">
-                                                        <div class="ui form">
-                                                            <div class="grouped fields">
-                                                                <div class="field">
-                                                                    <div class="ui radio checkbox">
-                                                                        <input type="radio" name="size" value="small">
-                                                                        <label>Small</label>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="field">
-                                                                    <div class="ui radio checkbox">
-                                                                        <input type="radio" name="size" value="medium">
-                                                                        <label>Medium</label>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="field">
-                                                                    <div class="ui radio checkbox">
-                                                                        <input type="radio" name="size" value="large">
-                                                                        <label>Large</label>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="field">
-                                                                    <div class="ui radio checkbox">
-                                                                        <input type="radio" name="size" value="x-large">
-                                                                        <label>X-Large</label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                <div class="ui vertical accordion menu">
+                                    <div class="item">
+                                        <a class="active title">
+                                            <i class="dropdown icon"></i>
+                                            Size
+                                        </a>
+                                        <div class="active content">
+                                            <div class="ui form">
+                                                <div class="grouped fields">
+                                                    <div class="field">
+                                                        <div class="ui radio checkbox">
+                                                            <input type="radio" name="size" value="small">
+                                                            <label>Small</label>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="item">
-                                                    <a class="title">
-                                                        <i class="dropdown icon"></i>
-                                                        Colors
-                                                    </a>
-                                                    <div class="content">
-                                                        <div class="ui form">
-                                                            <div class="grouped fields">
-                                                                <div class="field">
-                                                                    <div class="ui checkbox">
-                                                                        <input type="checkbox" name="small">
-                                                                        <label>Red</label>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="field">
-                                                                    <div class="ui checkbox">
-                                                                        <input type="checkbox" name="medium">
-                                                                        <label>Orange</label>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="field">
-                                                                    <div class="ui checkbox">
-                                                                        <input type="checkbox" name="large">
-                                                                        <label>Green</label>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="field">
-                                                                    <div class="ui checkbox">
-                                                                        <input type="checkbox" name="x-large">
-                                                                        <label>Blue</label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                    <div class="field">
+                                                        <div class="ui radio checkbox">
+                                                            <input type="radio" name="size" value="medium">
+                                                            <label>Medium</label>
                                                         </div>
                                                     </div>
-                                                </div>
-
-                                                <div class="item">
-                                                    <a class="title">
-                                                        <i class="dropdown icon"></i>
-                                                        Brand
-                                                    </a>
-                                                    <div class="content">
-                                                        <div class="ui form">
-                                                            <div class="grouped fields">
-                                                                <div class="field">
-                                                                    <div class="ui checkbox">
-                                                                        <input type="checkbox" name="small">
-                                                                        <label>Adidas</label>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="field">
-                                                                    <div class="ui checkbox">
-                                                                        <input type="checkbox" name="medium">
-                                                                        <label>Reebok</label>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="field">
-                                                                    <div class="ui checkbox">
-                                                                        <input type="checkbox" name="large">
-                                                                        <label>Nike</label>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="field">
-                                                                    <div class="ui checkbox">
-                                                                        <input type="checkbox" name="x-large">
-                                                                        <label>Ecco</label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                    <div class="field">
+                                                        <div class="ui radio checkbox">
+                                                            <input type="radio" name="size" value="large">
+                                                            <label>Large</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="field">
+                                                        <div class="ui radio checkbox">
+                                                            <input type="radio" name="size" value="x-large">
+                                                            <label>X-Large</label>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </form>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <a class="title">
+                                            <i class="dropdown icon"></i>
+                                            Colors
+                                        </a>
+                                        <div class="content">
+                                            <div class="ui form">
+                                                <div class="grouped fields">
+                                                    <tr th:each="colors : ${colorList}">
+                                                    <div class="field">
+                                                        <div class="ui checkbox">
+                                                            <input type="checkbox" th:value="*{colors}"  name = "color"/>
+                                                                <label th:for="${colors}"  th:text="${colors}"></label>
+<!--                                                                <input type="checkbox" th:object="color" name="red">-->
+<!--                                                                <label >Red</label>-->
+                                                        </div>
+                                                    </div>
+                                                    </tr>
+<!--                                                    <div class="field">-->
+<!--                                                        <div class="ui checkbox">-->
+<!--                                                            <input type="checkbox" name="medium">-->
+<!--                                                            <input th:action="@{/filter}" th:value="${color != null} ? ${color}" th:name="color" type="checkbox">-->
+<!--                                                            <label>Orange</label>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="field">-->
+<!--                                                        <div class="ui checkbox">-->
+<!--                                                            &lt;!&ndash;                                                                        <input type="checkbox" name="large">&ndash;&gt;-->
+<!--                                                            <input th:action="@{/filter}" th:value="${color != null} ? ${color}" th:name="color" type="checkbox">-->
+<!--                                                            <label>Green</label>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="field">-->
+<!--                                                        <div class="ui checkbox">-->
+<!--                                                            &lt;!&ndash;                                                                        <input type="checkbox" name="x-large">&ndash;&gt;-->
+<!--                                                            <input th:action="@{/products/filter}" th:value="${color != null} ? ${color}" th:name="color" type="checkbox">-->
+<!--                                                            <label>Blue</label>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="item">
+                                        <a class="title">
+                                            <i class="dropdown icon"></i>
+                                            Категорії
+                                        </a>
+                                        <div class="content">
+                                            <div class="ui form">
+                                                <div class="grouped fields">
+                                                    <tr th:each="categories : ${categoryList}">
+                                                    <div class="field">
+                                                        <div class="ui checkbox">
+                                                            <input type="checkbox"  th:value="categories" th:name="categoty.name">
+                                                            <label th:for="${categories.title}" th:text="${categories.title}"></label>
+                                                        </div>
+                                                    </div>
+<!--                                                    <div class="field">-->
+<!--                                                        <div class="ui checkbox">-->
+<!--                                                            <input type="checkbox" th:value="categories" th:name="category.name">-->
+<!--                                                            <label th:for="${categories.title}" th:text="${categories.title}"></label>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="field">-->
+<!--                                                        <div class="ui checkbox">-->
+<!--                                                            <input type="checkbox" th:value="categories" th:name="category.name">-->
+<!--                                                            <label th:for="${categories.title}" th:text="${categories.title}"></label>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="field">-->
+<!--                                                        <div class="ui checkbox">-->
+<!--                                                            <input type="checkbox" th:value="categories" th:name="category.name">-->
+<!--                                                            <label th:for="${categories.title}" th:text="${categories.title}"></label>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+                                                    </tr>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="ui red button" type="submit"><a>применить</a></button>
+                            </form>
+
+
                         </div>
                     </div>
 
@@ -215,6 +231,8 @@
                                                 <a class="header" href="#"><div th:text="${product.title}"></div></a>
                                                 <div class="meta">
                                                     <a><div th:text="${product.price}"></div></a>
+                                                    <a><div th:text="${product.category.getTitle()}"></div></a>
+                                                    <a><div th:text="${product.color}"></div></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -259,34 +277,44 @@
 <!--        </ul>-->
 <!--    </nav>-->
 
-            <nav class="ui pagination menu" th:if="${products.totalPages gt 0}" style="alignment: center">
-                <li class="item" th:classappend="${products.number eq 0} ? 'disabled'">
-                    <a
-                            th:href="@{/products?page={id}(id=${products.number lt 2 ? 1 : products.number})}"
-                            aria-label="Previous"
-                            title="Previous Page">
-                        <span>Previous</span>
-                    </a>
-                </li>
-                <li class="item" th:classappend="${i eq products.number + 1} ? 'active'"
-                    th:each="i : ${#numbers.sequence( products.number + 1, products.totalPages > 12 + products.number ? products.number + 12 : products.totalPages, 1)}">
-                    <a th:href="@{/products?page={id}(id=${i})}" th:text="${i}"
-                       th:title="${'Page '+ i}">
-                    </a>
-                </li>
-                <li class="disabled item" th:if="${products.number + 12 < products.totalPages}">
-                    <a href="#">
-                        <span></span>
-                    </a>
-                </li>
-                <li class="item" th:classappend="${products.number + 1 eq products.totalPages} ? 'disabled'">
-                    <a th:href="@{/products?page={id}(id=${products.number + 2})}"
-                       aria-label="Next"
-                       title="Next Page" >
-                        <span>Next</span>
-                    </a>
-                </li>
-            </nav>
+<!--            <nav class="ui pagination menu" th:if="${products.totalPages gt 0}" style="alignment: center">-->
+<!--                <li class="item" th:classappend="${products.number eq 0} ? 'disabled'">-->
+<!--                    <a-->
+<!--                            th:href="@{/products?page={id}(id=${products.number lt 2 ? 1 : products.number})}"-->
+<!--                            aria-label="Previous"-->
+<!--                            title="Previous Page">-->
+<!--                        <span>Previous</span>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li class="item" th:classappend="${i eq products.number + 1} ? 'active'"-->
+<!--                    th:each="i : ${#numbers.sequence( products.number + 1, products.totalPages > 12 + products.number ? products.number + 12 : products.totalPages, 1)}">-->
+<!--                    <a th:href="@{/products?page={id}(id=${i})}" th:text="${i}"-->
+<!--                       th:title="${'Page '+ i}">-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li class="disabled item" th:if="${products.number + 12 < products.totalPages}">-->
+<!--                    <a href="#">-->
+<!--                        <span></span>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li class="item" th:classappend="${products.number + 1 eq products.totalPages} ? 'disabled'">-->
+<!--                    <a th:href="@{/products?page={id}(id=${products.number + 2})}"-->
+<!--                       aria-label="Next"-->
+<!--                       title="Next Page" >-->
+<!--                        <span>Next</span>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--            </nav>-->
+
+<!--            <div>-->
+<!--                <ul class="ui pagination center aligned">-->
+<!--                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>-->
+<!--                    <li th:each="i : ${#numbers.sequence(1, totalPage, 1)}">-->
+<!--                        <a th:class="page-link" th:text="${i}" th:classappend="${page == i ? 'active' : ''}" th:href="@{'/products/?page=' + ${i} + ${filters}}"></a>-->
+<!--                    </li>-->
+<!--                    <li class="page-item"><a class="page-link" href="#">Next</a></li>-->
+<!--                </ul>-->
+<!--            </div>-->
 
         </main>
 
