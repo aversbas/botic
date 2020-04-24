@@ -29,7 +29,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         this.dataSource = dataSource;
     }
 
-    private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -37,10 +36,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private MyUserDetailService userDetailsService;
 
-    @Autowired
-    public WebSecurityConfig(CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler) {
-        this.customAuthenticationSuccessHandler = customAuthenticationSuccessHandler;
-    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
