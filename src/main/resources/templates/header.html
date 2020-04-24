@@ -3,7 +3,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
+    <script src="js/internationalization.js"></script>
+    <script src="js/dropdownselect.js"></script>
+    <link rel="stylesheet" href="css/style.css" >
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
     <meta charset="UTF-8">
     <title>header</title>
 </head>
@@ -11,41 +16,32 @@
 <header class="ui grid three column row">
     <div class="ui container grid three column row">
         <div class="menu-header-left column left aligned middle aligned content">
+
             <div class="menu-burger ui ">
                 <div class="ui dropdown icon item">
-
-
-
-<!--                                        <i class="bars icon"></i>-->
-
-
-                    <div class="dropdown">
-                        <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">
-                            <i class="bars icon"></i></button>
-                        <ul class="dropdown-menu">
-                            <li><a href="/admin"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-wrench"></span> Settings</a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-                        </ul>
-                    </div>
-
+                    <i class="bars icon"></i>
                     <div class="menu">
-                        <div class="item">
-                            <i class="dropdown icon"></i>
-                            <span class="text">New</span>
-                            <div class="menu">
-                                <div class="item">Document</div>
-                                <div class="item">Image</div>
-                            </div>
-                        </div>
+                        <div class="item"><i class="edit icon"></i>Edit User</div>
+                        <div class="item"><i class="delete icon"></i>Remove User</div>
+                        <div class="item"><i class="hide icon"></i>Make Invisible</div>
                     </div>
                 </div>
+
+
+                <select name="combo" class="ui icon dropdown item" id="locales">
+                    <i class="language icon"></i>
+                    <option value="change" th:text="#{language.change}"></option>
+                    <option value="ru" th:text="#{lang.ru}"></option>
+                    <option value="ua" th:text="#{lang.ua}"></option>
+                </select>
+
+
+
             </div>
-            <div class="switcher-language">Укр</div>
         </div>
-        <a href="/index">
+            <a href="/index">
             <div class="logo column center aligned">
-                <img src="/images/logo.jpg" alt="logo" width="165px">
+                <img src="/images/logo.jpg" alt="logo" width="185px">
             </div>
             <a/>
             <div class="menu-header-right column right aligned">
@@ -67,6 +63,7 @@
                     </button>
                 </ul>
             </div>
+            </a>
     </div>
 </header>
 </body>

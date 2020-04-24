@@ -28,7 +28,7 @@ public class AppInternationalisation implements WebMvcConfigurer {
     @Bean
     public LocaleResolver localeResolver(){
         SessionLocaleResolver localeResolver = new SessionLocaleResolver();
-        localeResolver.setDefaultLocale(Locale.US);
+        localeResolver.setDefaultLocale(new Locale("ua"));
         return  localeResolver;
     }
 

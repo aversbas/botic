@@ -21,6 +21,13 @@
             <th>Description</th>
             <th>Photo</th>
             <th>Price</th>
+            <th>Type</th>
+            <th>Brand</th>
+            <th>Color</th>
+            <th>Size</th>
+            <th>Season</th>
+            <th>Quantity</th>
+            <th>Appointment</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -32,6 +39,13 @@
             <td th:text="${product.description}">Description</td>
             <td th:text="${product.photoName}">Photo</td>
             <td th:text="${product.price}">Price</td>
+            <td th:text="${product.type.getType()}">Type</td>
+            <td th:text="${product.brand}">Brand</td>
+            <td th:text="${product.color}">Color</td>
+            <td th:text="${product.size}">Size</td>
+            <td th:text="${product.season}">Season</td>
+            <td th:text="${product.quantity}">Quantity</td>
+            <td th:text="${product.appointment}">Appointment</td>
             <td>
                 <button class="ui grey button"><a th:href="@{'/admin/edit/' + ${product.id}}" >Edit</a></button>
                 <button class="ui red button"><a th:href="@{'/admin/delete/' + ${product.id}}" >Delete</a></button>
