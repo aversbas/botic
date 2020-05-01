@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/products")
@@ -87,7 +90,7 @@ public class ShopController {
 //    }
 
     @GetMapping
-    public String shopPage(Model model,Product product,
+    public String shopPage(Model model,Product product,Category category,
                            @RequestParam(value = "page") Optional<Integer> page,
                            @RequestParam(value = "word", required = false) String word,
                            @RequestParam(value = "min", required = false) Double min,
@@ -120,18 +123,24 @@ public class ShopController {
 //            filters.append("&category=" + category);
 //        }
 
+//        Page<Product> products = productsService.getProductsWithPagingAndFiltering(currentPage, PAGE_SIZE, spec);
+
         Page<Product> products = productsService.getProductsWithPagingAndFiltering(currentPage, PAGE_SIZE, spec);
+
 
         Product colorList = productsService.findByColor(color);
 
         List<Category> categoryList = categoryService.getAllCategories();
 
-        model.addAttribute("categoryList",categoryList);
-//        model.addAttribute("category",category);
+//        Product categoryCategory = productsService.findByCategory(category);
 
-        model.addAttribute("products", products.getContent());
+        model.addAttribute("categoryList",categoryList);
+        model.addAttribute("category",category);
+//        model.addAttribute("categoryCategory",categoryCategory);
+
+        model.addAttribute("products", products);
         model.addAttribute("page", currentPage);
-        model.addAttribute("totalPage", products.getTotalPages());
+//        model.addAttribute("totalPage", products.getTotalPages());
 
         model.addAttribute("filters", filters.toString());
 

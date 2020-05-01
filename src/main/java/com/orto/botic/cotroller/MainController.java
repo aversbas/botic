@@ -2,7 +2,6 @@ package com.orto.botic.cotroller;
 
 import com.orto.botic.entities.Comment;
 import com.orto.botic.entities.Product;
-import com.orto.botic.entities.User;
 import com.orto.botic.service.CommentService;
 import com.orto.botic.service.ProductService;
 import com.orto.botic.service.UserService;
@@ -14,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class MainController {
@@ -59,8 +57,17 @@ public class MainController {
         return "index";
     }
 
-    @GetMapping("/woman")
-    public String getWomanPage() {
-        return "woman";
+    @GetMapping("/productListCurrentId/{productId}")
+    public ModelAndView getProductPage(@PathVariable("productId") Long productId) {
+        var modelAndView = new ModelAndView();
+        Product  product = productService.findById(productId);
+        modelAndView.addObject("productListId",product);
+        modelAndView.setViewName("prod-id");
+        return modelAndView;
     }
+
+//    @GetMapping("/example")
+//    public String getExamplePage() {
+//        return "example";
+//    }
 }

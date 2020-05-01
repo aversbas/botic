@@ -48,6 +48,9 @@ public class Product {
   @Column(name = "appointment")
   private String appointment;
 
+  @Column(name = "article")
+  private String article;
+
   @ToString.Exclude
   @ManyToOne
   private Category category;

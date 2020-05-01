@@ -1,6 +1,8 @@
 package com.orto.botic.service;
 
+import com.orto.botic.entities.Category;
 import com.orto.botic.entities.Product;
+import com.orto.botic.entities.ProductType;
 import com.orto.botic.repositories.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,5 +56,13 @@ public class ProductService {
 
     public Product findByColor(String color) {
         return productRepository.findProductByColor(color);
+    }
+
+    public Product findByCategory(Category category) {
+        return (Product) productRepository.findProductByCategory(category);
+    }
+
+    public List<Product> getProductsWithCategoryAndType(Category category, ProductType productType) {
+        return  productRepository.findProductsByCategoryAndType(category,productType);
     }
 }

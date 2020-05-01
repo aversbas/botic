@@ -33,22 +33,21 @@
                 </div>
 
                 <div class="ui dropdown">
-                    <div class="item active">Анатомічне взуття</div>
+                    <div class="item active"><span th:text="#{anatomic.lable}"></span></div>
                     <div class="menu">
                         <div class="item">Чоловіче анатомічне взуття</div>
                         <div class="item">Жіноче анатомічне взуття</div>
                         <div class="item">Дитяче анатомічне взуття</div>
                         <div class="item">Для дому і дитячого садочку</div>
                         <div class="item">Медичне і професійне взуття</div>
-                        <div class="item">Розпродаж</div>
+                        <div class="item"><span th:text="#{sale.lable}"></span></div>
                     </div>
                 </div>
 
-                <a class="item active">Компресійний трикотаж</a>
-                <a class="item active">Устілки та вставки</a>
-                <a class="item active">Розпродаж</a>
+                <a class="item active"><span th:text="#{comprission.lable}"></span></a>
+                <a class="item active"><span th:text="#{insolesAndInserts.lable}"></span></a>
+                <a class="item active"><span th:text="#{sale.lable}"></span></a>
             </div>
-            <div class="ui divider"></div>
         </div>
     </nav>
     <main>
@@ -82,7 +81,7 @@
         </div>
         <div class="ui divider"></div>
     </main>
-    <div th:replace="footer :: footer"></div>
 </div>
+<div th:replace="footer :: footer"></div>
 </body>
 </html>
